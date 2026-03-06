@@ -7,10 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './user-item.css',
 })
 export class UserItem {
-  name: string; // Dichiarazione della proprietà
+  name: string;
 
   constructor() {
-    // Inizializzazione della proprietà nel costruttore
     this.name = 'Felipe';
   }
 }
