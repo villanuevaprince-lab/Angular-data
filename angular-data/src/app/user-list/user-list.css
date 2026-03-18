@@ -1,0 +1,10 @@
+ul {
+	list-style-type: none; /* Elimina il marker/pallino della lista. */
+	padding-left: 0;
+	margin: 0;
+}
+
+li {
+	margin-left: 0;
+	margin-bottom: 8px;
+}

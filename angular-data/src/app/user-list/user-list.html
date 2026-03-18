@@ -1,6 +1,24 @@
-<p>user-list works!</p>
+<p>Elenco utenti</p>
+
+<!-- Versione 1 (base): stampa diretta del nome dentro <li>. -->
+<!-- Usiamo @for per ripetere gli elementi <li>, non il contenitore <ul>. -->
+<!-- name e una variabile locale: esiste solo dentro il blocco @for. -->
+<!-- {{ name }} e interpolazione: mostra a schermo il valore corrente. -->
+<!--
 <ul>
   @for (name of names; track name) {
-      <li>{{name}}</li>
+    <li>{{ name }}</li>
+  }
+</ul>
+-->
+
+<!-- Versione 2 (padre -> figlio): per ogni nome creo un UserItemComponent. -->
+<ul>
+  <!-- @for scorre l'array names e assegna ogni valore alla variabile locale name. -->
+  @for (name of names; track name) {
+    <li>
+      <!-- [name] indica la proprieta @Input del figlio; "name" e il valore corrente del ciclo. -->
+      <app-user-item [name]="name"></app-user-item>
+    </li>
   }
 </ul>

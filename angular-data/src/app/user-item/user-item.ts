@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-item',
@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './user-item.html',
   styleUrl: './user-item.css',
 })
-export class UserItem {
-  name: string;
+export class UserItem implements OnInit {
+  // @Input trasforma questa proprieta in un canale di ricezione dal componente padre.
+  // In strict mode inizializziamo con stringa vuota per evitare errori di proprieta non inizializzata.
+  @Input() name: string = '';
 
-  constructor() {
-    this.name = 'Felipe';
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 }

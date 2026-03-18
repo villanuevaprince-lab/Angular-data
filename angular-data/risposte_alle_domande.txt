@@ -1,0 +1,92 @@
+1️⃣ Come si dichiara un vettore in una classe Angular?
+Un vettore si dichiara scrivendo il nome seguito da due punti, il tipo di dato e due parentesi quadre, ad esempio names: string[]; per un array di stringhe.
+
+2️⃣ Come lo puoi riempire?
+Si riempie nel costruttore assegnando i valori tra parentesi quadre, ad esempio this.names = ['Ari', 'Carlos', 'Felipe', 'Nate'];.
+
+3️⃣ Dato il codice: @for (name of names; track name) { <li>{{name}}</li>}
+3a. Cos'è il tag <li>?
+Il tag <li> (list item) rappresenta un elemento di una lista e crea una riga dell'elenco puntato.
+
+3b. A cosa serve il simbolo @?
+Il simbolo @ indica un decoratore Angular nel template, in questo caso @for è una direttiva moderna che permette di iterare su un array.
+
+3c. Cos'è un elemento DOM?
+Il DOM (Document Object Model) è la rappresentazione in memoria della struttura HTML; un elemento DOM è un singolo nodo come <li>, <div> o <h1>.
+
+3d. Cosa fa la stringa "name of names"?
+Comunica ad Angular di iterare su ogni elemento dell'array names, assegnare ogni elemento alla variabile locale name, e ripetere il blocco HTML per ogni iterazione.
+
+3d-i. Cos'è names?
+names è la proprietà dell'array dichiarata nel componente TypeScript che contiene i dati da iterare.
+
+3d-ii. Cosa fa let name (o name in @for)?
+È una variabile locale valida solo dentro il ciclo che contiene il valore corrente dell'elemento durante ogni iterazione.
+
+3e. Cosa visualizza {{name}}?
+La sintassi {{ name }} è interpolazione e visualizza il valore della variabile name nel template HTML.
+
+4️⃣ Riscrivi il ciclo con cars e variabile c
+xml
+@for (c of cars; track c) {
+  <li>{{ c }}</li>
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Domanda 1: A cosa serve il decoratore @Input?
+Il decoratore @Input trasforma una proprietà della classe in un canale di ricezione di dati dal componente padre, permettendo al padre di passare valori al figlio tramite la sintassi [nomeProprietà]="valore" nel template.
+
+Domanda 2: Come si importa?
+Si importa dal modulo @angular/core insieme agli altri decoratori, scrivendo: import { Component, OnInit, Input } from '@angular/core';
+
+Domanda 3: Come si associa a una variabile?
+Si aggiunge il decoratore @Input() direttamente prima della proprietà della classe, ad esempio @Input() name: string;, oppure con un valore di default come @Input() name: string = 'Default Name';
+
+❓ RISPETTO AL COMPONENTE PADRE (user-list)
+Domanda: Come si passa un valore a un componente figlio?
+Si usa la sintassi input binding con parentesi quadre nel template, scrivendo <app-user-item [nomeDelInput]="variabileDelPadre"></app-user-item>, dove [name] è la proprietà @Input del componente figlio e name è la variabile del padre o la variabile di ciclo del @for.
+
+🔄 RISCRITTURA DEL CODICE CON NOMI PERSONALIZZATI
+Vincoli Forniti:
+Componente figlio si chiama: gionny
+
+Variabile di input del componente figlio si chiama: pupa
+
+Vettore nel padre si chiama: bravo
+
+Variabile di ciclo si chiama: bu
+
+Codice Originale (da trasformare):
+xml
+<ul>
+  @for (name of names;track name) {
+    <li><app-user-item [ciao]="name"></app-user-item>
+    </li>
+  }
+</ul>
+Codice Corretto con Nomi Personalizzati:
+xml
+<ul>
+  @for (bu of bravo; track bu) {
+    <li>
+      <gionny [pupa]="bu"></gionny>
+    </li>
+  }
+</ul>
+Spiegazione della Trasformazione:
+name diventa bu (la variabile di ciclo del @for)
+
+names diventa bravo (l'array nel componente padre)
+
+app-user-item diventa gionny (il selettore del componente figlio)
+
+[ciao] diventa [pupa] (la proprietà @Input() del componente figlio)
+
+Nel Componente Figlio gionny.component.ts:
+typescript
+export class GionnyComponent {
+  @Input() pupa: string;  // Riceve il valore da parte del padre
+}
+In questo modo, il componente padre bravo passa ogni valore (bu) al componente figlio gionny tramite la proprietà @Input() chiamata pupa.
